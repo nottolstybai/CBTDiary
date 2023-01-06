@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+{% block content %}
+<script>
+    on_load("{{user_id}}");
+</script>
+    <h1>Дневник </h1>
+    <div class="ui form">
+        <div class="four fields">
+            <div class="field">
+                <select id="select_emotion" class="ui dropdown emotion selector" onchange="tableSearchForEmotion()">
+                    <option value="">Эмоции...</option>
+                </select>
+            </div>
+            <div class="field">
+                <div class="ui calendar" id="date_calendar">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Дата" id="date_selector" onchange="tableSearchForDate()">
+                  </div>
+                </div>
+            </div>
+            <div class="field">
+                <button class="ui primary button" id="new_record_button">Добавить запись</button>
+                <div class="ui special popup" style="width: 960px;">
+                     <div class="submit-order-form">
+                        <div class="ui form">
+                            <form id="adder_form">
+                            <div class="field">
+                                <label>Описание события</label>
+                                <input type="text" id="event">
+                            </div>
+
+                            <div class="field">
+                                <label>Автоматическая мысль</label>
+                                <input type="text" id="auto_thought">
+                            </div>
+                            <div class="field">
+                                <label>Уровень веры (1-10)</label>
+                                <input type="text" id="trust_lvl">
+                            </div>
+                            <div class="field">
+                                <label>Эмоции</label>
+                                <select id="emotion_selector" class="ui dropdown emotion selector">
+                                    <option value="">Эмоции...</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Интенсивность (1-10)</label>
+                                <input type="text" id="intensity_lvl">
+                            </div>
+                            <div class="field">
+                                <label>Когнитивные искажения</label>
+                                <select id="distortion_selector" class="ui dropdown">
+                                    <option value="">Искажения...</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Реакция телесная</label>
+                                <input type="text" id="body_reaction">
+                            </div>
+                            <div class="field">
+                                <label>Реакция поведенческая</label>
+                                <input type="text" id="behaviour_reaction">
+                            </div>
+                            <div class="field">
+                                <label>Обдуманный ответ</label>
+                                <input type="text" id="rational_answear">
+                            </div>
+                            <div class="field">
+                                <label>Вывод</label>
+                                <input type="text" id="conclusion">
+                            </div>
+                                </form>
+                            </br>
+                            <button id="record_adder" class="ui button" type="submit">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui search">
+                    <div class="ui icon input">
+                        <input class="prompt" id="search-text" type="text" placeholder="Search ..." onkeyup="tableSearch()">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="ui sortable selectable celled table" id="table-id">
+        <thead>
+            <tr>
+                <th style="display: none;">id</th>
+                <th>Описание события</th>
+                <th>Мысль</th>
+                <th>Эмоции</th>
+                <th>Когнитивные искажения</th>
+                <th>Дата</th>
+            </tr>
+        </thead>
+        <tbody id="record_table">
+        </tbody>
+    </table>
+
+<script>
+    if(window.location.href === "http://localhost:8000/app/diary/1"){
+        document.getElementById('sign_button').innerText = "Выйти";
+    }
+    $('.ui .dropdown').dropdown({clearable: true});
+    $('#date_calendar').calendar({
+        type: 'date',
+        formatter: {
+            date: 'YYYY-MM-DD'
+        }
+    });
+    $('#new_record_button').popup({
+        inline: true,
+        on : "click",
+    });
+    setup_button_to_add({{user_id}})
+</script>
+
+
+{% endblock %}

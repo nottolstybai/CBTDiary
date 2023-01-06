@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.0/dist/semantic.min.js"></script>
+    <script src="https://semantic-ui.com/javascript/library/tablesort.js"></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="{{ url_for('scripts', path='/searcher.js') }}"></script>
+    <script src="{{ url_for('scripts', path='/apiPost.js') }}"></script>
+    <script src="{{ url_for('scripts', path='/equityChart.js') }}"></script>
+    <script src="{{ url_for('scripts', path='/orders.js') }}"></script>
+    <script src="{{ url_for('scripts', path='/requests.js') }}"></script>
+    <title>Дневник КПТ</title>
+</head>
+<body>
+    <div class="ui top fixed menu">
+        <div class="item">
+            <img src="https://cdn.dribbble.com/users/49464/screenshots/2156188/fun.jpg">
+        </div>
+            <a class="item" href="http://localhost:8000/app/diary/1">Дневник</a>
+            <a class="item" href="http://localhost:8000/orders">Кабинет & статистика</a>
+<!--            <a class="item" href="http://localhost:8000/strategies">Strategies</a>-->
+        <div class="right menu">
+            <div class="item">
+                <button class="ui primary button" id="sign_button">Регистрация</button>
+            </div>
+        </div>
+    </div>
+    <h1></h1>
+    <div class="ui container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script>$('#table-id').tablesort()</script>
+</body>
+</html>

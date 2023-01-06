@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Запись в дневнике </h1>
+<div class="submit-order-form">
+    <div class="ui form">
+        <div class="field">
+            <label>Описание события</label>
+            <input type="text" id="trigger_event">
+        </div>
+
+        <div class="field">
+            <label>Автоматическая мысль</label>
+            <input type="text" id="automated_thought">
+        </div>
+        <div class="field">
+            <label>Уровень веры (1-10)</label>
+            <input type="text" id="trust_level">
+        </div>
+        <div class="field">
+            <label>Эмоции</label>
+            <select id="emotion_id" class="ui dropdown emotion selector">
+                <option value="">Эмоции...</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Интенсивность (1-10)</label>
+            <input type="text" id="intensity">
+        </div>
+        <div class="field">
+            <label>Когнитивные искажения</label>
+            <select id="distortion_id" class="ui dropdown">
+                <option value="">Искажения...</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Реакция телесная</label>
+            <input type="text" id="body_sens">
+        </div>
+        <div class="field">
+            <label>Реакция поведенческая</label>
+            <input type="text" id="behaviour">
+        </div>
+        <div class="field">
+            <label>Обдуманный ответ</label>
+            <input type="text" id="rational_answer">
+        </div>
+        <div class="field">
+            <label>Вывод</label>
+            <input type="text" id="conclusion">
+        </div>
+        </br>
+        <button class="ui icon button" id="changer">
+          <i class="pencil alternate icon"></i>
+        </button>
+        <button class="ui icon button" id="deleter">
+          <i class="trash alternate outline icon"></i>
+        </button>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", fill_emotion_selector)
+    document.addEventListener("DOMContentLoaded", fill_distortion_selector)
+    document.addEventListener("DOMContentLoaded", fill_form)
+    document.getElementById('deleter').addEventListener("click", delete_record)
+    $('.ui .dropdown').dropdown({clearable: true});
+</script>
+{% endblock %}

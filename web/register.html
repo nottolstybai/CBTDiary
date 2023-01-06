@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<script>
+  function mySubmitFunction() {
+    window.location.replace("http://localhost:8000/app/oauth")
+    return false
+  }
+</script>
+<h1>Регистрация </h1>
+<form class="ui form" onsubmit="return mySubmitFunction()">
+  <div class="field">
+    <label>Логин</label>
+    <input type="text" name="first-name" placeholder="Введите логин">
+  </div>
+  <div class="field">
+    <label>Электронная почта</label>
+    <input type="text" name="first-name" placeholder="Введите почту">
+  </div>
+  <div class="field">
+    <label>Пароль</label>
+    <input type="password" name="last-name" placeholder="Введите пароль">
+  </div>
+  <div class="field">
+    <label>Подтвердите пароль</label>
+    <input type="password" name="last-name" placeholder="Введите пароль еще раз...">
+  </div>
+  <div class="field">
+    <div class="ui toggle checkbox">
+      <input type="checkbox" tabindex="0" class="hidden">
+      <label>Согласен на обработку персональных данных</label>
+    </div>
+  </div>
+  <button class="ui button" type="submit" id="auth_button">Зарегистрироваться</button>
+</form>
+<script>
+  $('.ui.checkbox').checkbox({toggle: true});
+</script>
+{% endblock %}
