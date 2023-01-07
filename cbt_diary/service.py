@@ -1,4 +1,5 @@
 from sqlalchemy import func
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from db_manager.database import Base
 from . import db_models
@@ -90,4 +91,22 @@ def get_emotions(db: Session):
 
 def get_distortions(db: Session):
     res = get_from_entity_all(db, db_models.CognitiveDistortion)
+    return res
+
+
+def get_users_emotions(user_id: int, db: Session):
+    text_query = text(f"""select e.name from record 
+                            join emotion_record er on record.id = er.record_id 
+                            join emotion e on e.id = er.emotion_id
+                            where record.user_id={user_id}""")
+    res = db.execute(text_query).all()
+    return res
+
+
+def get_users_distortions(user_id: int, db: Session):
+    text_query = text(f"""select d.name from record 
+                            join distortion_record dr on record.id = dr.record_id 
+                            join cognitive_distortion d on d.id = dr.distortion_id
+                            where record.user_id={user_id}""")
+    res = db.execute(text_query).all()
     return res

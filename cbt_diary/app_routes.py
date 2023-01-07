@@ -88,3 +88,17 @@ def get_all_distortions(db: Session = Depends(get_db)):
     """Вывести все записи для определонного юзера"""
     distortions = service.get_distortions(db)
     return distortions
+
+
+@router.get("/user_emotion_list")
+def get_users_emotions(user_id: int, db: Session = Depends(get_db)):
+    """Вывести все записи для определонного юзера"""
+    emotions = service.get_users_emotions(user_id, db)
+    return emotions
+
+
+@router.get("/user_distortion_list")
+def get_users_distortions(user_id: int, db: Session = Depends(get_db)):
+    """Вывести все записи для определонного юзера"""
+    emotions = service.get_users_distortions(user_id, db)
+    return emotions

@@ -227,3 +227,35 @@ async function delete_record(){
         });
     window.location.replace("http://localhost:8000/app/diary/1")
 }
+
+
+/*--------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------*/
+/*----------------------------------STATS HTML------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------*/
+
+
+async function get_user_emotions(user_id, url){
+    const response = await fetch(url + `?` + new URLSearchParams({user_id: user_id}));
+    return await response.json();
+}
+
+async function parse_user_emotions(user_id, url){
+    const user_emotions = await get_user_emotions(user_id, url)
+    const parsed_emotion_obj = {};
+    const emotions_for_charts = [];
+    for (let emotion of user_emotions){
+        if (parsed_emotion_obj[emotion.name] === undefined)
+            parsed_emotion_obj[emotion.name] = 1;
+        else
+            parsed_emotion_obj[emotion.name] += 1;
+    }
+    for(let [emotion_name, number] of Object.entries(parsed_emotion_obj)){
+        let iteration_emotion_array = [emotion_name, number];
+        emotions_for_charts.push(iteration_emotion_array);
+    }
+    return emotions_for_charts
+}

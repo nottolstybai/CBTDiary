@@ -11,6 +11,11 @@ async def get_stocks(request: Request, user_id: str):
     return templates.TemplateResponse("index.html", {"request": request, "user_id": user_id})
 
 
+@router.get("/stats/{user_id}")
+async def get_stocks(request: Request, user_id: str):
+    return templates.TemplateResponse("stats.html", {"request": request, "user_id": user_id})
+
+
 @router.get("/diary/record/{record_id}")
 async def get_stocks(request: Request, record_id):
     return templates.TemplateResponse("record.html", {"request": request, "record": record_id})

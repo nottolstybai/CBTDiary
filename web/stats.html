@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block content %}
+<script type="text/javascript">
+    let emotions;
+    parse_user_emotions({{user_id}}, "http://localhost:8000/api/diary/user_emotion_list").then(
+        function(json){
+          emotions = json;
+        });
+    let distortions;
+    parse_user_emotions({{user_id}}, "http://localhost:8000/api/diary/user_distortion_list").then(
+        function(json){
+          distortions = json;
+        });
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Draw the pie chart and bar chart when Charts is loaded.
+      google.charts.setOnLoadCallback(drawChartEmotions);
+      google.charts.setOnLoadCallback(drawChartDistortions);
+
+      function drawChartEmotions() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows(emotions);
+
+        var piechart_options = {title:'Pie Chart: How Much Pizza I Ate Last Night',
+                       width:500,
+                       height:300,
+                       pieHole: 0.4};
+        var piechart = new google.visualization.PieChart(document.getElementById('pie_emotion'));
+        piechart.draw(data, piechart_options);
+
+        var barchart_options = {title:'Barchart: How Much Pizza I Ate Last Night',
+                       width:500,
+                       height:300,
+                       legend: 'none'};
+        var barchart = new google.visualization.BarChart(document.getElementById('bar_emotion'));
+        barchart.draw(data, barchart_options);
+      }
+      function drawChartDistortions() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows(distortions);
+
+        var piechart_options = {title:'Pie Chart: How Much Pizza I Ate Last Night',
+                       width:500,
+                       height:300,
+                       pieHole: 0.4};
+        var piechart = new google.visualization.PieChart(document.getElementById('pie_distortion'));
+        piechart.draw(data, piechart_options);
+
+        var barchart_options = {title:'Barchart: How Much Pizza I Ate Last Night',
+                       width:500,
+                       height:300,
+                       legend: 'none'};
+        var barchart = new google.visualization.BarChart(document.getElementById('bar_distortion'));
+        barchart.draw(data, barchart_options);
+      }
+</script>
+<h1>Личный кабинет и статистика </h1>
+<div id="chart_table" style="width: 100%">
+    <table class="columns" style="width: 100%">
+        <tr>
+            <td><div id="pie_emotion" style="border: 1px solid #ccc; margin: 3px"></div></td>
+            <td><div id="bar_emotion" style="border: 1px solid #ccc; margin: 3px"></div></td>
+        </tr>
+        <tr>
+            <td><div id="pie_distortion" style="border: 1px solid #ccc; margin: 3px"></div></td>
+            <td><div id="bar_distortion" style="border: 1px solid #ccc; margin: 3px"></div></td>
+        </tr>
+</table>
+</div>
+
+<script>
+</script>
+{% endblock %}
