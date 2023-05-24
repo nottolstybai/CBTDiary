@@ -58,6 +58,9 @@
     </div>
 </div>
 <script>
+    if(window.location.href === "http://localhost:8000/app/diary/record/36"){
+        document.getElementById('sign_button').innerText = "Выйти";
+    }
     document.addEventListener("DOMContentLoaded", fill_emotion_selector)
     document.addEventListener("DOMContentLoaded", fill_distortion_selector)
     document.addEventListener("DOMContentLoaded", fill_form)

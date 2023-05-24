@@ -19,7 +19,7 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
-# add your model's MetaData object here
+# add your emotion_recognition's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
 target_metadata = Base.metadata

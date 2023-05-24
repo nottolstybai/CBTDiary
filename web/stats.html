@@ -24,14 +24,14 @@
         data.addColumn('number', 'Slices');
         data.addRows(emotions);
 
-        var piechart_options = {title:'Pie Chart: How Much Pizza I Ate Last Night',
+        var piechart_options = {title:'Pie Chart: Топ эмоций в дневнике',
                        width:500,
                        height:300,
                        pieHole: 0.4};
         var piechart = new google.visualization.PieChart(document.getElementById('pie_emotion'));
         piechart.draw(data, piechart_options);
 
-        var barchart_options = {title:'Barchart: How Much Pizza I Ate Last Night',
+        var barchart_options = {title:'Barchart: Топ эмоций в дневнике',
                        width:500,
                        height:300,
                        legend: 'none'};
@@ -45,14 +45,14 @@
         data.addColumn('number', 'Slices');
         data.addRows(distortions);
 
-        var piechart_options = {title:'Pie Chart: How Much Pizza I Ate Last Night',
+        var piechart_options = {title:'Pie Chart: Топ когнитивных искажений в дневнике',
                        width:500,
                        height:300,
                        pieHole: 0.4};
         var piechart = new google.visualization.PieChart(document.getElementById('pie_distortion'));
         piechart.draw(data, piechart_options);
 
-        var barchart_options = {title:'Barchart: How Much Pizza I Ate Last Night',
+        var barchart_options = {title:'Barchart: Топ когнитивных искажений в дневнике',
                        width:500,
                        height:300,
                        legend: 'none'};
